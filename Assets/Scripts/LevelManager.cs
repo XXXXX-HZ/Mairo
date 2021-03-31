@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 public class LevelManager : MonoBehaviour
 {
-    private const float loadSceneDelay = 1f;
+    private const float loadSceneDelay = 0.5f;
 
     public bool hurryUp; // within last 100 secs?
     public int marioSize; // 0..2
@@ -374,6 +374,7 @@ public class LevelManager : MonoBehaviour
 
             if (timeup)
             {
+                mario.EndEpisode();
                 Debug.Log(this.name + " MarioRespawn: called due to timeup");
             }
             Debug.Log(this.name + " MarioRespawn: lives left=" + lives.ToString());
@@ -387,7 +388,7 @@ public class LevelManager : MonoBehaviour
             {
                 mario.SetReward(-1.0f);
                 mario.EndEpisode();
-                ReloadCurrentLevel(deadSound.length, timeup);
+               // ReloadCurrentLevel(deadSound.length, timeup);
                 Debug.Log(this.name + " MarioRespawn: all dead");
 
             }
@@ -469,7 +470,7 @@ public class LevelManager : MonoBehaviour
     public void LoadNewLevel(string sceneName, float delay = loadSceneDelay)
     {
         t_GameStateManager.SaveGameState();
-        t_GameStateManager.ConfigNewLevel();
+        t_GameStateManager.ConfigNewGame();
         t_GameStateManager.sceneToLoad = sceneName;
         LoadSceneDelay("Level Start Screen", delay);
     }
@@ -506,6 +507,7 @@ public class LevelManager : MonoBehaviour
             LoadSceneDelay("Level Start Screen", delay);
         }
     }
+
 
     public void LoadGameOver(float delay = loadSceneDelay, bool timeup = false)
     {
@@ -696,13 +698,14 @@ public class LevelManager : MonoBehaviour
         timerPaused = true;
         ChangeMusic(levelCompleteMusic);
         musicSource.loop = false;
+       
     }
 
     public void MarioReachFlagPole()
     {
         timerPaused = true;
         PauseMusicPlaySound(flagpoleSound, false);
-        mario.ClimbFlagPole();
-        mario.EndEpisode();
+       mario.ClimbFlagPole();
+       
     }
 }

@@ -1,0 +1,36 @@
+{
+    "Mario": {
+        "checkpoints": [
+            {
+                "steps": 36625,
+                "file_path": "results\\simple_03\\Mario\\Mario-36625.onnx",
+                "reward": null,
+                "creation_time": 1617177109.648065
+            },
+            {
+                "steps": 0,
+                "file_path": "results\\simple_03\\Mario\\Mario-0.onnx",
+                "reward": null,
+                "creation_time": 1617183418.5506463
+            },
+            {
+                "steps": 89519,
+                "file_path": "results\\simple_03\\Mario\\Mario-89519.onnx",
+                "reward": 38.50412920489907,
+                "creation_time": 1617188660.5381353
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 89519,
+            "file_path": "results\\simple_03\\Mario.onnx",
+            "reward": 38.50412920489907,
+            "creation_time": 1617188660.5381353
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": -1
+    }
+}

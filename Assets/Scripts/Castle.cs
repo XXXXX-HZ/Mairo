@@ -9,10 +9,12 @@ public class Castle : MonoBehaviour {
 	private bool moveFlag;
 
 	private float flagVelocityY = 0.025f;
-	public string sceneName;
+	//public string sceneName;
+	private Mario mario;
 
 	// Use this for initialization
 	void Start () {
+		mario = FindObjectOfType<Mario>();
 		t_LevelManager = FindObjectOfType<LevelManager> ();
 		flag = transform.Find ("Flag");
 		flagStop = transform.Find ("Flag Stop");
@@ -23,7 +25,11 @@ public class Castle : MonoBehaviour {
 			if (flag.position.y < flagStop.position.y) {
 				flag.position = new Vector2 (flag.position.x, flag.position.y + flagVelocityY);
 			} else {
-				t_LevelManager.LoadNewLevel (sceneName, t_LevelManager.levelCompleteMusic.length);
+				mario.AddReward(1.0f);
+				mario.EndEpisode();
+
+				//t_LevelManager.LoadNewLevel (sceneName, t_LevelManager.levelCompleteMusic.length);
+
 			}
 		}
 	}

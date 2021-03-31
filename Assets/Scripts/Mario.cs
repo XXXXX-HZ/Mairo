@@ -11,6 +11,7 @@ using Unity.MLAgents.Sensors;
 
 public class Mario : Agent
 {
+  
     private LevelManager t_LevelManager;
     private Transform m_GroundCheck1, m_GroundCheck2;
     private GameObject m_StompBox;
@@ -66,6 +67,12 @@ public class Mario : Agent
     private bool jumpButtonReleased;
 
     public bool inputFreezed;
+
+    public string sceneName;
+
+    public CheckpointManager _checkpointManager;
+
+
 
 
 
@@ -477,7 +484,7 @@ public class Mario : Agent
         m_CircleCollider2D = GetComponent<CircleCollider2D>();
         normalGravity = m_Rigidbody2D.gravityScale;
 
-
+        transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();
         // Drop Mario at spawn position
         /*transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();*/
 
@@ -491,16 +498,18 @@ public class Mario : Agent
 
     public override void OnEpisodeBegin()
     {
-
+        _checkpointManager.ResetCheckpoints();
+        t_LevelManager.LoadNewLevel(sceneName, t_LevelManager.levelCompleteMusic.length);
+       
         // Drop Mario at spawn position
-        transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();
+       // transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();
         /*	m_Animator.SetTrigger("respawn");*/
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         GameObject target = GameObject.FindWithTag("Goal");
-        Debug.Log(target.transform.position);
+
         sensor.AddObservation(target.transform.position.normalized);
         sensor.AddObservation(transform.position.normalized);
         //other.gameObject.tag == "Goal"
@@ -511,11 +520,13 @@ public class Mario : Agent
         AddReward(-0.001f);
 
 
-        Vector3 toTarget = this.transform.position - target.transform.position;
-        sensor.AddObservation(toTarget.normalized);
+       /* Vector3 toTarget = this.transform.position - target.transform.position;
+        sensor.AddObservation(toTarget.normalized);*/
 
-
-
+        Vector3 diff = _checkpointManager.nextCheckPointToReach.transform.position - transform.position;
+        sensor.AddObservation(diff / 20f);//divide by 20 to normalize
+        AddReward(-0.001f);
+        /*sensor.AddObservation(transform.position.normalized);*/
 
     }
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -536,22 +547,22 @@ public class Mario : Agent
 		else if (isDashingtest == 0)
 			isDashing = false;*/
 
-        var isCrouchingtest = actionBuffers.DiscreteActions[1];
+        /*var isCrouchingtest = actionBuffers.DiscreteActions[1];
 
         if (isCrouchingtest == 1)
             isCrouching = true;
         else if (isCrouchingtest == 0)
-            isCrouching = false;
+            isCrouching = false;*/
 
 
-        var isShootingtest = actionBuffers.DiscreteActions[2];
+        var isShootingtest = actionBuffers.DiscreteActions[1];
 
         if (isShootingtest == 1)
             isShooting = true;
         else if (isShootingtest == 0)
             isShooting = false;
 
-        var jumpButtonHeldtest = actionBuffers.DiscreteActions[3];
+        var jumpButtonHeldtest = actionBuffers.DiscreteActions[2];
 
         if (jumpButtonHeldtest == 1)
             jumpButtonHeld = true;
@@ -612,13 +623,13 @@ public class Mario : Agent
 			discreteActionsOut[1] = Input.GetKey(KeyCode.E) ? 1 : 0;*/
 
             //Crouch
-            discreteActionsOut[1] = Input.GetKey(KeyCode.S) ? 1 : 0;
+           /*  discreteActionsOut[1] = Input.GetKey(KeyCode.S) ? 1 : 0;*/
 
             // Shoot
-            discreteActionsOut[2] = Input.GetKeyDown(KeyCode.X) ? 1 : 0;
+            discreteActionsOut[1] = Input.GetKeyDown(KeyCode.X) ? 1 : 0;
 
             //jump
-            discreteActionsOut[3] = Input.GetKey(KeyCode.Z) ? 1 : 0;
+            discreteActionsOut[2] = Input.GetKey(KeyCode.Z) ? 1 : 0;
             /*if (Input.GetKeyUp(KeyCode.Z))
 			{
 				jumpButtonReleased = true;

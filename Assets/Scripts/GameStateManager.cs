@@ -43,7 +43,7 @@ public class GameStateManager : MonoBehaviour {
 		lives = 3;
 		coins = 0;
 		scores = 0;
-		timeLeft = 400.5f;
+		timeLeft = 2000.5f;
 		hurryUp = false;
 		ResetSpawnPosition ();
 		sceneToLoad = null;
@@ -51,13 +51,13 @@ public class GameStateManager : MonoBehaviour {
 	}
 
 	public void ConfigNewLevel() {
-		timeLeft = 400.5f;
+		timeLeft =2000.5f;
 		hurryUp = false;
 		ResetSpawnPosition ();
 	}
 
 	public void ConfigReplayedLevel() { // e.g. Mario respawns
-		timeLeft = 400.5f;
+		timeLeft = 2000.5f;
 		hurryUp = false;
 	}
 
