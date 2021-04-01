@@ -21,6 +21,11 @@ behaviors:
       extrinsic:
         gamma: 0.99
         strength: 1.0
+      curiosity:
+        gamma: 0.99
+        strength: 1.0
+        encoding_size: 128
+        learning_rate: 0.0003
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
@@ -50,7 +55,7 @@ checkpoint_settings:
   run_id: hb_02
   initialize_from: null
   load_model: false
-  resume: false
+  resume: true
   force: false
   train_model: false
   inference: false

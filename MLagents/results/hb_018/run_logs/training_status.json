@@ -1,0 +1,24 @@
+{
+    "Mario": {
+        "checkpoints": [
+            {
+                "steps": 77489,
+                "file_path": "results\\hb_018\\Mario\\Mario-77489.onnx",
+                "reward": null,
+                "creation_time": 1617257405.1086056
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 77489,
+            "file_path": "results\\hb_018\\Mario.onnx",
+            "reward": null,
+            "creation_time": 1617257405.1086056
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": -1
+    }
+}

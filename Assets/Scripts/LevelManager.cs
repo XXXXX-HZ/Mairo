@@ -386,7 +386,7 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                mario.SetReward(-1.0f);
+               
                 mario.EndEpisode();
                // ReloadCurrentLevel(deadSound.length, timeup);
                 Debug.Log(this.name + " MarioRespawn: all dead");
@@ -411,6 +411,7 @@ public class LevelManager : MonoBehaviour
         enemy.TouchedByStarmanMario();
         soundSource.PlayOneShot(kickSound);
         AddScore(enemy.starmanBonus, enemy.gameObject.transform.position);
+        mario.AddReward(0.1f);
         Debug.Log(this.name + " MarioStarmanTouchEnemy called on " + enemy.gameObject.name);
     }
 
@@ -419,6 +420,7 @@ public class LevelManager : MonoBehaviour
         enemy.TouchedByRollingShell();
         soundSource.PlayOneShot(kickSound);
         AddScore(enemy.rollingShellBonus, enemy.gameObject.transform.position);
+        mario.AddReward(0.1f);
         Debug.Log(this.name + " RollingShellTouchEnemy called on " + enemy.gameObject.name);
     }
 
@@ -426,6 +428,7 @@ public class LevelManager : MonoBehaviour
     {
         enemy.HitBelowByBlock();
         AddScore(enemy.hitByBlockBonus, enemy.gameObject.transform.position);
+        mario.AddReward(0.1f);
         Debug.Log(this.name + " BlockHitEnemy called on " + enemy.gameObject.name);
     }
 
@@ -434,6 +437,7 @@ public class LevelManager : MonoBehaviour
         enemy.HitByMarioFireball();
         soundSource.PlayOneShot(kickSound);
         AddScore(enemy.fireballBonus, enemy.gameObject.transform.position);
+        mario.AddReward(0.1f);
         Debug.Log(this.name + " FireballTouchEnemy called on " + enemy.gameObject.name);
     }
 
@@ -561,7 +565,7 @@ public class LevelManager : MonoBehaviour
         {
             musicSource.Play();
         }
-        Debug.Log(this.name + " ChangeMusicCo: done changing music to " + clip.name);
+        /*Debug.Log(this.name + " ChangeMusicCo: done changing music to " + clip.name);*/
     }
 
     public void PauseMusicPlaySound(AudioClip clip, bool resumeMusic)
@@ -660,9 +664,9 @@ public class LevelManager : MonoBehaviour
     {
         Vector3 spawnPosition;
         GameStateManager t_GameStateManager = FindObjectOfType<GameStateManager>();
-        Debug.Log(this.name + " FindSpawnPosition: GSM spawnFromPoint=" + t_GameStateManager.spawnFromPoint.ToString()
+       /* Debug.Log(this.name + " FindSpawnPosition: GSM spawnFromPoint=" + t_GameStateManager.spawnFromPoint.ToString()
             + " spawnPipeIdx= " + t_GameStateManager.spawnPipeIdx.ToString()
-            + " spawnPointIdx=" + t_GameStateManager.spawnPointIdx.ToString());
+            + " spawnPointIdx=" + t_GameStateManager.spawnPointIdx.ToString());*/
         if (t_GameStateManager.spawnFromPoint)
         {
             spawnPosition = GameObject.Find("Spawn Points").transform.GetChild(t_GameStateManager.spawnPointIdx).transform.position;

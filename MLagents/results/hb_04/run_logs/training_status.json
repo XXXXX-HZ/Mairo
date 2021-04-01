@@ -1,4 +1,20 @@
 {
+    "Mario": {
+        "checkpoints": [
+            {
+                "steps": 10496,
+                "file_path": "results\\hb_04\\Mario\\Mario-10496.onnx",
+                "reward": 17791.933375805616,
+                "creation_time": 1617220628.9709494
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10496,
+            "file_path": "results\\hb_04\\Mario.onnx",
+            "reward": 17791.933375805616,
+            "creation_time": 1617220628.9709494
+        }
+    },
     "metadata": {
         "stats_format_version": "0.2.0",
         "mlagents_version": "0.23.0",

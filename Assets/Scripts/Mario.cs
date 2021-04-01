@@ -70,7 +70,7 @@ public class Mario : Agent
 
     public string sceneName;
 
-    public CheckpointManager _checkpointManager;
+    private Checkpoint checkpoint;
 
 
 
@@ -453,8 +453,8 @@ public class Mario : Agent
                     other.gameObject.GetComponent<KoopaShell>().isRolling ||  // non-rolling shell should do no damage
                     !bottomHit || (bottomHit && !enemy.isBeingStomped))
                 {
-                    Debug.Log(this.name + " OnCollisionEnter2D: Damaged by " + other.gameObject.name
-                        + " from " + normal.ToString() + "; isFalling=" + isFalling); // TODO sometimes fire before stompbox reacts
+                   /* Debug.Log(this.name + " OnCollisionEnter2D: Damaged by " + other.gameObject.name
+                        + " from " + normal.ToString() + "; isFalling=" + isFalling);*/ // TODO sometimes fire before stompbox reacts
                     t_LevelManager.MarioPowerDown();
                 }
 
@@ -471,6 +471,7 @@ public class Mario : Agent
             isClimbingFlagPole = false;
             JumpOffPole();
         }
+       
     }
 
     public override void Initialize()
@@ -487,7 +488,7 @@ public class Mario : Agent
         transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();
         // Drop Mario at spawn position
         /*transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();*/
-
+        checkpoint = FindObjectOfType<Checkpoint>();
         // Set correct size
         UpdateSize();
 
@@ -498,12 +499,10 @@ public class Mario : Agent
 
     public override void OnEpisodeBegin()
     {
-        _checkpointManager.ResetCheckpoints();
+        checkpoint.ResetCheckpoints();
         t_LevelManager.LoadNewLevel(sceneName, t_LevelManager.levelCompleteMusic.length);
        
-        // Drop Mario at spawn position
-       // transform.position = FindObjectOfType<LevelManager>().FindSpawnPosition();
-        /*	m_Animator.SetTrigger("respawn");*/
+        
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -514,18 +513,15 @@ public class Mario : Agent
         sensor.AddObservation(transform.position.normalized);
         //other.gameObject.tag == "Goal"
 
-        float distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);
+       /* float distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);*/
 
-        AddReward(1f / distanceToTarget);
-        AddReward(-0.001f);
+       /* AddReward(1f / distanceToTarget);
+        AddReward(-0.001f);*/
 
 
-       /* Vector3 toTarget = this.transform.position - target.transform.position;
-        sensor.AddObservation(toTarget.normalized);*/
-
-        Vector3 diff = _checkpointManager.nextCheckPointToReach.transform.position - transform.position;
-        sensor.AddObservation(diff / 20f);//divide by 20 to normalize
-        AddReward(-0.001f);
+        Vector3 toTarget = this.transform.position - target.transform.position;
+        sensor.AddObservation(toTarget.normalized);
+        AddReward(-0.002f);
         /*sensor.AddObservation(transform.position.normalized);*/
 
     }

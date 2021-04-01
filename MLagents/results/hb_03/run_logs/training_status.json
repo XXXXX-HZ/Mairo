@@ -2,17 +2,17 @@
     "Mario": {
         "checkpoints": [
             {
-                "steps": 1961,
-                "file_path": "results\\hb_03\\Mario\\Mario-1961.onnx",
-                "reward": -4.6332244873046875,
-                "creation_time": 1616963652.1792464
+                "steps": 582,
+                "file_path": "results\\hb_03\\Mario\\Mario-582.onnx",
+                "reward": -0.5930000146230062,
+                "creation_time": 1617219646.4228945
             }
         ],
         "final_checkpoint": {
-            "steps": 1961,
+            "steps": 582,
             "file_path": "results\\hb_03\\Mario.onnx",
-            "reward": -4.6332244873046875,
-            "creation_time": 1616963652.1792464
+            "reward": -0.5930000146230062,
+            "creation_time": 1617219646.4228945
         }
     },
     "metadata": {
