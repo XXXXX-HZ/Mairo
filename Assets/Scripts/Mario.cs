@@ -501,28 +501,29 @@ public class Mario : Agent
     {
         checkpoint.ResetCheckpoints();
         t_LevelManager.LoadNewLevel(sceneName, t_LevelManager.levelCompleteMusic.length);
-       
-        
+
+
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        GameObject target = GameObject.FindWithTag("Goal");
+        /*GameObject target = GameObject.FindWithTag("Goal");
 
         sensor.AddObservation(target.transform.position.normalized);
         sensor.AddObservation(transform.position.normalized);
         //other.gameObject.tag == "Goal"
 
-       /* float distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);*/
+        float distanceToTarget = Vector3.Distance(this.transform.position, target.transform.position);
 
-       /* AddReward(1f / distanceToTarget);
-        AddReward(-0.001f);*/
+        AddReward(1f / distanceToTarget);*/
+        AddReward(-0.01f);
 
-
+/*
         Vector3 toTarget = this.transform.position - target.transform.position;
         sensor.AddObservation(toTarget.normalized);
         AddReward(-0.002f);
-        /*sensor.AddObservation(transform.position.normalized);*/
+        sensor.AddObservation(transform.position.normalized);*/
 
     }
     public override void OnActionReceived(ActionBuffers actionBuffers)

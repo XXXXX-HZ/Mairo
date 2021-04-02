@@ -1,0 +1,48 @@
+{
+    "Mario": {
+        "checkpoints": [
+            {
+                "steps": 41479,
+                "file_path": "results\\hb_20\\Mario\\Mario-41479.onnx",
+                "reward": -3.763332943121592,
+                "creation_time": 1617330198.8841176
+            },
+            {
+                "steps": 55769,
+                "file_path": "results\\hb_20\\Mario\\Mario-55769.onnx",
+                "reward": -1.8472724123434587,
+                "creation_time": 1617332655.5222278
+            },
+            {
+                "steps": 59504,
+                "file_path": "results\\hb_20\\Mario\\Mario-59504.onnx",
+                "reward": -1.889999720785353,
+                "creation_time": 1617333572.2929766
+            },
+            {
+                "steps": 62327,
+                "file_path": "results\\hb_20\\Mario\\Mario-62327.onnx",
+                "reward": -2.0633329848448434,
+                "creation_time": 1617334200.5204916
+            },
+            {
+                "steps": 65486,
+                "file_path": "results\\hb_20\\Mario\\Mario-65486.onnx",
+                "reward": -2.215384309108441,
+                "creation_time": 1617354027.1448295
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 65486,
+            "file_path": "results\\hb_20\\Mario.onnx",
+            "reward": -2.215384309108441,
+            "creation_time": 1617354027.1448295
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.2.0",
+        "mlagents_version": "0.23.0",
+        "torch_version": "1.7.0+cu110",
+        "tensorflow_version": -1
+    }
+}

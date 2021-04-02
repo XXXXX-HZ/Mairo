@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 public class LevelManager : MonoBehaviour
 {
-    private const float loadSceneDelay = 0.5f;
+    private const float loadSceneDelay = 1f;
 
     public bool hurryUp; // within last 100 secs?
     public int marioSize; // 0..2
@@ -381,7 +381,7 @@ public class LevelManager : MonoBehaviour
 
             if (lives > 0)
             {
-                mario.AddReward(-0.2f);
+                
                 ReloadCurrentLevel(deadSound.length, timeup);
             }
             else
@@ -403,6 +403,7 @@ public class LevelManager : MonoBehaviour
         enemy.StompedByMario();
         soundSource.PlayOneShot(stompSound);
         AddScore(enemy.stompBonus, enemy.gameObject.transform.position);
+        mario.AddReward(0.1f);
         Debug.Log(this.name + " MarioStompEnemy called on " + enemy.gameObject.name);
     }
 
@@ -468,7 +469,6 @@ public class LevelManager : MonoBehaviour
         isRespawning = false;
         isPoweringDown = false;
         SceneManager.LoadScene(sceneName);
-        SceneManager.LoadScene(sceneName);
     }
 
     public void LoadNewLevel(string sceneName, float delay = loadSceneDelay)
@@ -478,6 +478,8 @@ public class LevelManager : MonoBehaviour
         t_GameStateManager.sceneToLoad = sceneName;
         LoadSceneDelay("Level Start Screen", delay);
     }
+
+  
 
     public void LoadSceneCurrentLevel(string sceneName, float delay = loadSceneDelay)
     {
