@@ -381,14 +381,14 @@ public class LevelManager : MonoBehaviour
 
             if (lives > 0)
             {
-                
+
                 ReloadCurrentLevel(deadSound.length, timeup);
             }
             else
             {
-               
+
                 mario.EndEpisode();
-               // ReloadCurrentLevel(deadSound.length, timeup);
+                // ReloadCurrentLevel(deadSound.length, timeup);
                 Debug.Log(this.name + " MarioRespawn: all dead");
 
             }
@@ -473,13 +473,14 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNewLevel(string sceneName, float delay = loadSceneDelay)
     {
+        Debug.Log(t_GameStateManager);
         t_GameStateManager.SaveGameState();
         t_GameStateManager.ConfigNewGame();
         t_GameStateManager.sceneToLoad = sceneName;
         LoadSceneDelay("Level Start Screen", delay);
     }
 
-  
+
 
     public void LoadSceneCurrentLevel(string sceneName, float delay = loadSceneDelay)
     {
@@ -665,10 +666,10 @@ public class LevelManager : MonoBehaviour
     public Vector3 FindSpawnPosition()
     {
         Vector3 spawnPosition;
-        GameStateManager t_GameStateManager = FindObjectOfType<GameStateManager>();
-       /* Debug.Log(this.name + " FindSpawnPosition: GSM spawnFromPoint=" + t_GameStateManager.spawnFromPoint.ToString()
-            + " spawnPipeIdx= " + t_GameStateManager.spawnPipeIdx.ToString()
-            + " spawnPointIdx=" + t_GameStateManager.spawnPointIdx.ToString());*/
+        t_GameStateManager = FindObjectOfType<GameStateManager>();
+        /* Debug.Log(this.name + " FindSpawnPosition: GSM spawnFromPoint=" + t_GameStateManager.spawnFromPoint.ToString()
+             + " spawnPipeIdx= " + t_GameStateManager.spawnPipeIdx.ToString()
+             + " spawnPointIdx=" + t_GameStateManager.spawnPointIdx.ToString());*/
         if (t_GameStateManager.spawnFromPoint)
         {
             spawnPosition = GameObject.Find("Spawn Points").transform.GetChild(t_GameStateManager.spawnPointIdx).transform.position;
@@ -704,14 +705,14 @@ public class LevelManager : MonoBehaviour
         timerPaused = true;
         ChangeMusic(levelCompleteMusic);
         musicSource.loop = false;
-       
+
     }
 
     public void MarioReachFlagPole()
     {
         timerPaused = true;
         PauseMusicPlaySound(flagpoleSound, false);
-       mario.ClimbFlagPole();
-       
+        mario.ClimbFlagPole();
+
     }
 }
